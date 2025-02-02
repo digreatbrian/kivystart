@@ -1,6 +1,6 @@
 
 # KivyStart
-![KivyStart Image](./kivystart.png)
+![KivyStart Image](./images/kivystart.jpg)
 
 **KivyStart** is a Python package designed to streamline the creation of project structures for Kivy applications. It provides a standardized, modular, and scalable template to help you kickstart your Kivy projects efficiently.
 
