@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "KivyStart"
+version = "1.0.1"
+description = "KivyStart is a versatile package from creating best kivy project structures"
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [
+    { name = "Brian Musakwa", email = "digreatbrian@gmail.com" },
+]
+maintainers = [
+    { name = "Brian Musakwa", email = "digreatbrian@gmail.com" },
+]
+dependencies = [
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: BSD License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Operating System :: OS Independent"
+]
+keywords = [
+    "kivy",
+    "kivy*",
+    "mvc",
+    "kivymd",
+]
+
+[project.urls]
+Homepage = "https://github.com/digreatbrian/kivystart"
+Repository = "https://github.com/digreatbrian/kivystart"
+Issues = "https://github.com/digreatbrian/kivystart/issues"
+Documentation = "https://github.com/digreatbrian/kivystart/wiki"
+Createrpage = "https://brianmusakwa.link"
+
+[project.entry-points.console_scripts]
+duck = "kivystart.__main__:cli"
+
+[tool.setuptools.dynamic]
+version = {attr = "kivystart.__version__"}
+
+[tool.setuptools.packages.find]
+include = ["kivystart*"]

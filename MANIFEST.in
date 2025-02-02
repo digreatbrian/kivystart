@@ -1,0 +1,5 @@
+include *.txt
+include *.md
+recursive-include kivystart *
+exclude kivystart/**/__pycache__
+exclude kivystart/**/__pycache__/*.pyc

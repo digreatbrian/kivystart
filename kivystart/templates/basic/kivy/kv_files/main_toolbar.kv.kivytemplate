@@ -1,0 +1,28 @@
+#: import Theme theme.Theme
+
+<MainToolbar>:
+    id: main_toolbar
+    size_hint: [1, .1]
+    orientation: "horizontal"
+    padding: ["5dp", "5dp"]
+    
+    canvas.before:
+        Color:
+            rgba: Theme.primary_color  # Ensure Theme is properly defined
+        Rectangle:
+            size: self.size  # Use self instead of main_toolbar
+            pos: self.pos  # Ensure correct positioning
+
+    # Adding widgets
+    Label:
+        id: title_label
+        text: "[[ appname ]]"
+        bold: True
+        font_size: "18sp"
+        color: [1, 1, 1, 1] # white
+        size_hint: [None, 1]
+        width: self.texture_size[0]  # Use texture_size for accurate width
+
+    BoxLayout:
+        id: toolbar_right_placeholder
+        orientation: "horizontal"

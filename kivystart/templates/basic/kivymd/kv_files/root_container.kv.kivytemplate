@@ -1,0 +1,31 @@
+# Root container that holds the entire app layout
+#: import Theme theme.Theme
+<RootContainer>:
+    id: root_container
+    md_bg_color: [1, 1, 1, 1] # White
+    # The main screen manager handles switching between screens
+    MainScreenManager:
+        id: main_screen_manager
+
+        # The primary screen of the app
+        MainScreen:
+            id: main_screen
+            name: "main"  # Screen name for navigation
+            
+            # Place container for the toolbar and main container
+            MDBoxLayout:
+                # Toolbar at the top for navigation or app title
+                orientation: "vertical"
+                
+                MainToolbar:
+                    id: main_toolbar  
+    
+                # Main content area where UI elements will be placed
+                MainContainer:
+                    id: main_container
+                    MDLabel:
+                        color: Theme.text_color
+                        bold: True
+                        text: "Your UI Elements here!"
+                        font_size: "14sp"
+                        halign: "center"

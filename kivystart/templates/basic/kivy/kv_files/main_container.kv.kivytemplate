@@ -1,0 +1,13 @@
+#: import Theme theme.Theme
+
+<MainContainer>:
+    id: main_container
+    size_hint: [1, 1]
+    padding: ["2dp", "2dp"]
+    
+    canvas.before:
+        Color:
+            rgba: Theme.background_color  # Ensure Theme is properly defined
+        Rectangle:
+            size: self.size  # Use self instead of main_container
+            pos: self.pos    # Ensure it is positioned correctly

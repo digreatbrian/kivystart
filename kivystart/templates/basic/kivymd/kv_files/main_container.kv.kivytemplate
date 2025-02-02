@@ -1,0 +1,7 @@
+#: import Theme theme.Theme
+
+<MainContainer>:
+    id: main_container
+    size_hint: [1, 1]
+    padding: ["2dp", "2dp"]
+    md_bg_color: Theme.background_color
