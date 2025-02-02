@@ -50,7 +50,7 @@ def click_echo(data: str, prefix: str = "* ", **kwargs):
     click.echo(click.style(prefix + data, **kwargs))
 
 
-def recursive_get_files(path, pattern="*") -> List[str]:
+def recursive_get_files(path, pattern) -> List[str]:
     """Recursively collect files which matches a certain pattern"""
     if os.path.isfile(path):
         if fnmatch.fnmatch(path, pattern):

@@ -7,6 +7,7 @@ from typing import Optional, List
 
 from kivystart.storage import kivystart_storage
 from kivystart.utils.dateutils import gmt_date
+from kivystart.utils.base import joinpaths
 from kivystart.app_template.basic import BasicAppTemplate
 
 
@@ -113,5 +114,5 @@ class MakeProjectCommand:
             license = license,
             kivy_version = kivy_version,
         )
-        base_dir = os.path.abspath('.')
+        base_dir = joinpaths(os.path.abspath('.'), name)
         app_template.create_project(base_dir, update=update)

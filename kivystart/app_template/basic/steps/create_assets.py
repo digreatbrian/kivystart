@@ -13,9 +13,14 @@ class CreateAssetsStep(Step):
         """
         Create assets directory
         """
+        # Create empty assets directory and sub directories
         assets_destination = joinpaths(self.app_template.destination_dir, "assets")
-        assets_source = joinpaths(self.app_template.source_dir, "assets")
-        shutil.copytree(assets_source, assets_destination) 
+        
+        fonts = joinpaths(assets_destination, "fonts")
+        images = joinpaths(assets_destination, "images")
+        
+        os.makedirs(fonts, exist_ok=True)
+        os.makedirs(images, exist_ok=True)
     
     def action(self):
         # Main entry point

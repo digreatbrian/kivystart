@@ -5,6 +5,7 @@ import os
 import click
 import time
 import sys
+import shutil
 import pathlib
 import webbrowser
 import subprocess
@@ -115,7 +116,7 @@ class CreateRootFilesStep(Step):
         Create a buildozer.spec file
         """
         cmd = ["buildozer", "init"]
-        subprocess.run(cmd, check=True)
+        return subprocess.run(cmd)
     
     def apply_buildozer_spec_patches(self) -> Dict:
         """
@@ -231,13 +232,20 @@ class CreateRootFilesStep(Step):
             buildozer_success = False
             try:
                 popen = subprocess.run(["buildozer"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                
                 if not os.path.isfile(joinpaths(self.app_template.destination_dir, "buildozer.spec")):
-                    self.create_buildozer_spec()
-                    click_echo("Successfully created buildozer.spec!", fg="cyan")
+                    if self.create_buildozer_spec().returncode == 0:
+                        click_echo("Successfully created buildozer.spec", fg="cyan")
+                    
+                    if os.path.isfile("buildozer.spec"):
+                        shutil.move("buildozer.spec", self.app_template.destination_dir)
+                        click_echo("Successfully moved buildozer.spec to correct directory", fg="cyan")
+                        buildozer_success = True
+                    else:
+                        click_echo("Skipped buildozer.spec move, it doesn't exist in current directory")
                 else:
                     click_echo("Skipped buildozer init, buildozer.spec exists", fg="yellow")
                 
-                buildozer_success = True
             except FileNotFoundError:
                 # buildozer not installed
                 click_echo("Skipping buildozer.spec creation, buildozer is not installed.", fg="yellow")
@@ -304,7 +312,7 @@ class BasicAppTemplate(BaseAppTemplate):
             os.makedirs(str(final_file_dir), exist_ok=True)
          
         try:
-             with open(final_file_fullpath, mode) as fd:
+             with open(final_file_fullpath, mode, encoding="utf-8") as fd:
                  fd.write(content)
         except FileExistsError:
              raise AppTemplateError(f"Cannot save file, it seems like file '{filepath}' already exists. Try to use --update flag to bypass this.")
@@ -318,6 +326,12 @@ class BasicAppTemplate(BaseAppTemplate):
             update (bool): Condition to update an existing project for the specified fields
          """
         self.destination_dir = destination_dir
+        
+        if not os.path.isdir(destination_dir):
+            click_echo("Project destination directory doesn't exist, creating now!", fg="cyan")
+        
+        click_echo(f"Project directory: {destination_dir}", fg="cyan")
+        
         steps = [
             CreateRootFilesStep(self, update=update),
             CreateAssetsStep(self, update=update),

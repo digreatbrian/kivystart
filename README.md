@@ -24,6 +24,10 @@ pip install ./kivystart
 To generate a new Kivy project using KivyStart, run:
 ```
 python -m kivystart makeproject demo DemoApp 
+
+# or
+
+kivystart makeproject demo DemoApp
 ```
 
 ### 💡 Want to explore more options?
@@ -31,6 +35,10 @@ Run the following command to see available flags and configurations:
 
 ```
 python -m kivystart makeproject --help 
+
+# or
+
+kivystart makeproject --help
 ```
 
 ## 📂 Project Structure

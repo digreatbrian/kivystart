@@ -22,7 +22,7 @@ class CreateKvFilesStep(Step):
         Create the kv_files
         """
         kv_files_source_dir = joinpaths(self.app_template.source_dir, "kv_files")
-        files = recursive_get_files(kv_files_source_dir)
+        files = recursive_get_files(kv_files_source_dir, "*.py")
         global_context = {
             "appname": self.app_template.appname,
         }
