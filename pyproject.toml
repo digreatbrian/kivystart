@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "KivyStart"
-version = "1.0.1"
-description = "KivyStart is a versatile package from creating best kivy project structures"
+version = "1.0.0"
+description = "KivyStart is a versatile package from creating best mvc-like kivy projects"
 readme = "README.md"
 license = { file = "LICENSE" }
 authors = [
@@ -30,10 +30,25 @@ classifiers = [
 keywords = [
     "kivy",
     "kivy*",
-    "mvc",
+    "kivy framework",
+    "kivy application",
+    "kivy python",
+    "mvc pattern",
+    "model view controller",
     "kivymd",
+    "kivymd framework",
+    "kivy project structure",
+    "python kivy template",
+    "kivy project setup",
+    "kivy starter template",
+    "kivy ui components",
+    "kivy mobile app",
+    "kivy gui",
+    "python mobile development",
+    "kivy android app",
+    "kivy app packaging",
+    "kivy buildozer",
 ]
-
 [project.urls]
 Homepage = "https://github.com/digreatbrian/kivystart"
 Repository = "https://github.com/digreatbrian/kivystart"
