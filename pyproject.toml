@@ -57,7 +57,7 @@ Documentation = "https://github.com/digreatbrian/kivystart/wiki"
 Createrpage = "https://brianmusakwa.link"
 
 [project.entry-points.console_scripts]
-duck = "kivystart.__main__:cli"
+kivystart = "kivystart.__main__:cli"
 
 [tool.setuptools.dynamic]
 version = {attr = "kivystart.__version__"}
