@@ -95,7 +95,7 @@ class MakeProjectCommand:
         app_template_cls = cls.templates.get(template)
         
         if not app_template_cls:
-            raise MakeProjectError(f"App template '{template}' not supported, possible templates are {self.templates}")
+            raise MakeProjectError(f"App template '{template}' not supported, possible templates are {tuple(cls.templates.keys())}")
         
         app_template = app_template_cls(
             projectname = name,

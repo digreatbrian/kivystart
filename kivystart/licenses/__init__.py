@@ -94,7 +94,7 @@ Full license text: https://creativecommons.org/licenses/by/4.0/
 
 LICENSES = {
     "mit": ("MIT License", MIT),
-    "apache 2.0": ("""Apache License
+    "apache-2.0": ("""Apache License
 Version 2.0, January 2004
 http://www.apache.org/licenses/""", APACHE_2_0),
      "apache-3.0": ("""GNU GENERAL PUBLIC LICENSE

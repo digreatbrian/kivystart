@@ -12,6 +12,7 @@ from typing import Optional, List
 from kivystart.commands import (
     MakeProjectCommand, MakeProjectError,
 )
+from kivystart.licenses import LICENSES
 from kivystart.ansi import art
 from kivystart.utils.base import click_echo
 
@@ -40,19 +41,19 @@ def cli(ctx, version):
 @click.argument("name")
 @click.argument("appname")
 @click.option('-O', '--owner', default=None, help="The owner of the kivy project in format 'Fullname <email@something.com>' ")
-@click.option('--no-buildozer', is_flag=True, default=False, help="Condition on whether to create a buildozer file. Defaults to False.")
-@click.option('--update', is_flag=True, default=False, help="This updates an existing project with new data. This will recreate dynamic files and create static files if they don't exist.")
-@click.option("--no-kivymd", is_flag=True, default=False, help="Add this flag if you want strictly the Kivy version of the project (removing KivyMD support).")
-@click.option('--template', default='basic', type=click.Choice(["basic", "navigation", "game"]), help="The template for the project (e.g., 'basic', 'navigation', 'game').")
-@click.option('--package-name', default=None, help="The package name for the project (e.g., 'com.example.myapp').")
-@click.option('--python-version', default='3.9', help="The Python version to use in the project (e.g., '3.10').")
-@click.option('--no-venv', is_flag=True, default=False, help="Skip creation of a virtual environment.")
-@click.option('--dependencies', default='', help="Comma-separated list of additional dependencies to include (e.g., 'requests,sqlite3').")
-@click.option('--theme', default=None, help="The theme for the project (e.g., 'dark', 'light').")
-@click.option('--default-screen', default=None, help="Create a predefined screen (e.g., 'login', 'home', 'settings').")
-@click.option('--git-init', is_flag=True, default=False, help="Initialize a Git repository for the project.")
-@click.option('--license', default=None, help="Add a LICENSE file with the specified license (e.g., 'MIT', 'Apache').")
-@click.option("--kivy-version", default=None, help="Minimum kivy version supported")
+@click.option('-nb', '--no-buildozer', is_flag=True, default=False, help="Condition on whether to create a buildozer file. Defaults to False.")
+@click.option('-U', '--update', is_flag=True, default=False, help="This updates an existing project with new data. This will recreate dynamic files and create static files if they don't exist.")
+@click.option('-nmd', "--no-kivymd", is_flag=True, default=False, help="Add this flag if you want strictly the Kivy version of the project (removing KivyMD support).")
+@click.option('-t', '--template', default='basic', type=click.Choice(["basic", "navigation", "game"]), help="The template for the project (e.g., 'basic', 'navigation', 'game'). Some templates will be coming soon.")
+@click.option('-pkg', '--package-name', default=None, help="The package name for the project (e.g., 'com.example.myapp').")
+@click.option('-py', '--python-version', default='3.9', help="The Python version to use in the project (e.g., '3.10').")
+@click.option('-nv', '--no-venv', is_flag=True, default=False, help="Skip creation of a virtual environment.")
+@click.option('-r', '--dependencies', default='', help="Comma-separated list of additional dependencies to include in requirements.txt(e.g., 'requests,sqlite3').")
+@click.option('-m', '--theme', default=None, help="The theme for the project (e.g., 'dark', 'light').")
+@click.option('-s', '--default-screen', default=None, help="Create a predefined screen (e.g., 'login', 'home', 'settings'). Coming soon.")
+@click.option('-git', '--git-init', is_flag=True, default=False, help="Initialize a Git repository for the project.")
+@click.option('-l', '--license', default=None, help=f"Add a LICENSE file with the specified license. Available options are {tuple(LICENSES.keys())}.")
+@click.option('-kv', "--kivy-version", default=None, help="Minimum kivy version supported")
 def makeproject(
     name: str,
     appname: str,
@@ -75,11 +76,11 @@ def makeproject(
     Creates a Kivy startup project.
     
     WARNING: If the --update flag is True, to surely protect your files from being overwritten, make sure you
-    move, make a backup or change the name of the file with a conflicting name.
+    move them somewhere or make a backups or change conflicting files/directories.
     
     Args:
-        name: The project name
-        appname: The name of the application usually ending with a suffix 'App' eg DemoApp
+        name: The project name.
+       appname: The name of the application usually ending with a suffix 'App' eg DemoApp.
     """
     # Do some validation first.
     
